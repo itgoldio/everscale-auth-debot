@@ -1,0 +1,10 @@
+# ignode .hash .code .decoded .tvc, abi.json in contracts folder
+contracts/*/*.abi.json
+contracts/*/*.code
+contracts/*/*.decoded
+contracts/*/*.hash
+contracts/*/*.tvc
+
+contracts/*/.solc_imports/*.sol
+
+custom.env.sh
