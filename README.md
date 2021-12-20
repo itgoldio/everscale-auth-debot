@@ -10,6 +10,8 @@
 
 ***
 
+Данная версия технологии авторизации через дебота работает с использованием кошелька <a href="https://web.ton.surf/">Surf</a>. 
+
 <h1 id="description">Описание работы:</h1>
 
 <h2 id="backend">Website backend</h2>
@@ -19,12 +21,14 @@
 2) callback url - url, который обрабатывает POST запросы формата (id={}&signature={}&addr={}&pk={:064x})
 3) debot.abi
 
-Генерирует id и otp (one time password) и хранит в формате ключ -> значение, чтобы потом можно было по id найти otp.
-Обращается к деботу по адресу, вызывая метод:
+Генерирует id и otp (one time password) (оба типа string) и хранит в формате ключ -> значение, чтобы потом можно было по id найти otp.
+Обращается к смарт-контракту дебота по адресу, вызывая метод:
 
 ```
     function getInvokeMessage(string id, string otp, string callbackUrl) public pure returns(TvmCell message)
 ```
+
+Данная функция использует метод tvm.buildIntMsg из Ton Solidity Compiler, и возвращает Объект tvmCell, представляющий собой вызов функции auth(string id, string otp, string callbackUrl) у дебота.
 
 Получает закодированное msg.body и формирует uri по шаблону:
 
@@ -32,7 +36,7 @@
     https://uri.ton.surf/debot/<debot addr>?message=<msg body>&net=<network: mainnet or devnet>
 ```
 
-<h2 id="debot">Debot</h2>
+<h2 id="debot">Debot ( in Surf )</h2>
 
 Получает wallet address и pubkey
 
