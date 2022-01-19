@@ -1,5 +1,15 @@
 # Authorize From Debot
 
+
+
+<h2>codehash</h2> 
+
+```
+dc03d8bf88dbe1ed4e47a0a9eab7c84ae2fb417acec25ff8ed740cd90ec5d462
+```
+
+
+
 ## Содержание
 * [__Описание работы__](#description)
     * [Website backend](#backend)
@@ -96,20 +106,11 @@
    });
 ```
 <h1 id="сustomization">Настройка контракта</h1>
-Все сообщения дебота можно настроить. Для этого созданы методы-сеттеры. Если вы хотите изменить сообщения дебота до деплоя - можно изменить переменные, отвечающие за то или иное сообщение дебота: <br><br>
+Все сообщения дебота можно настроить. Для этого созданы методы-сеттеры.
+Если вы хотите изменить сообщения дебота - используйте соответствующие методы-сеттеры: <br>
 
 ```
-    string _startStr = "Use external link for authorization";
-    string _debotName = "itgold authentication debot";
-    string _successStr = "Congratulations, authentication passed. Go back to the site.";
-    string _failedStr = "Authentication FAILED.";
-    string _signingBoxStr = "Please, sign authentication data with your key.";
-    address _supportAddr = address.makeAddrStd(0, 0x5fb73ece6726d59b877c8194933383978312507d06dda5bcf948be9d727ede4b);
-```
-
-Если вы хотите изменить сообщения дебота после деплоя в сеть, используйте соответствующие методы-сеттеры: <br>
-
-```
+    function setIcon(bytes icon) public
     function setDebotName(string debotName) public
     function setStartStr(string startStr) public
     function setSuccessStr(string successStr) public
