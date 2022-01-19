@@ -5,6 +5,7 @@
     * [Website backend](#backend)
     * [Debot](#debot)
     * [Callback server](#callback)
+* [__Настройка контракта__](#сustomization)
 * [__Сборка контракта__](#how_to_build)
 * [__Деплой контракта__](#how_to_deploy)
 
@@ -93,6 +94,28 @@
       unsigned: Buffer.from(hash, 'hex').toString('base64'),
       signature: Buffer.from(signature.replace(/ /g, '+'), 'base64').toString('hex'),
    });
+```
+<h1 id="сustomization">Настройка контракта</h1>
+Все сообщения дебота можно настроить. Для этого созданы методы-сеттеры. Если вы хотите изменить сообщения дебота до деплоя - можно изменить переменные, отвечающие за то или иное сообщение дебота: <br><br>
+
+```
+    string _startStr = "Use external link for authorization";
+    string _debotName = "itgold authentication debot";
+    string _successStr = "Congratulations, authentication passed. Go back to the site.";
+    string _failedStr = "Authentication FAILED.";
+    string _signingBoxStr = "Please, sign authentication data with your key.";
+    address _supportAddr = address.makeAddrStd(0, 0x5fb73ece6726d59b877c8194933383978312507d06dda5bcf948be9d727ede4b);
+```
+
+Если вы хотите изменить сообщения дебота после деплоя в сеть, используйте соответствующие методы-сеттеры: <br>
+
+```
+    function setDebotName(string debotName) public
+    function setStartStr(string startStr) public
+    function setSuccessStr(string successStr) public
+    function setFailedStr(string failedStr) public
+    function setSigningBoxStr(string signingBoxStr) public
+    function setSupportAddr(address supportAddr) public
 ```
 
 <h1 id="how_to_build">Сборка контракта</h1>
