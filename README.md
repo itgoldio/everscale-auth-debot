@@ -94,7 +94,7 @@ dc03d8bf88dbe1ed4e47a0a9eab7c84ae2fb417acec25ff8ed740cd90ec5d462
 
 ```javascript
    const { hash } = await this.crypto.sha256({
-	data: Buffer.from(`${otp}${callbackUrl}${address}`, 'utf-8').toString(
+	data: Buffer.from(`${otp}${address}`, 'utf-8').toString(
 		'base64'
 	),
    });
@@ -103,6 +103,7 @@ dc03d8bf88dbe1ed4e47a0a9eab7c84ae2fb417acec25ff8ed740cd90ec5d462
    const { succeeded } = await this.client.crypto.nacl_sign_detached_verify({
       unsigned: Buffer.from(hash, 'hex').toString('base64'),
       signature: Buffer.from(signature.replace(/ /g, '+'), 'base64').toString('hex'),
+      public: pk,
    });
 ```
 <h1 id="сustomization">Настройка контракта</h1>
